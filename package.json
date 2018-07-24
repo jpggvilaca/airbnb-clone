@@ -4,7 +4,7 @@
   "description": "Airbnb clone just for practice",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --history-api-fallback",
     "build": "webpack"
   },
   "keywords": [],
@@ -14,7 +14,8 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-loadable": "^5.4.0",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "styled-components": "^3.3.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -22,6 +23,7 @@
     "babel-eslint": "^8.2.6",
     "babel-loader": "^7.1.5",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^1.0.0",
