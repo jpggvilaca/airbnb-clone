@@ -13,17 +13,30 @@ const AsyncProfile = Loadable({
   loading: Loading,
 });
 
+const AsyncLoginForm = Loadable({
+  loader: () => import('./components/LoginForm'),
+  loading: Loading,
+});
+
 export const routes = [
   {
     path: "/",
     exact: true,
     name: 'Home',
+    isProtected: false,
     component: () => <AsyncHome />
   },
   {
     path: "/profile",
     exact: true,
     name: 'Profile',
+    isProtected: true,
     component: () => <AsyncProfile />
+  },
+  {
+    path: "/login",
+    exact: true,
+    isProtected: false,
+    component: () => <AsyncLoginForm />
   }
 ];

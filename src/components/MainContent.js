@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from "react-router-dom";
 import { routes } from '../routes';
+import PrivateRoute from './PrivateRoute';
 import styled from 'styled-components';
 
 const StyleMainContent = styled.main`
@@ -9,18 +10,40 @@ const StyleMainContent = styled.main`
   padding-top: 60px;
 `;
 
-export default class MainContent extends Component {
-  state = { isProtected: false };
+class MainContent extends Component {
+  state = { isAuthenticated: false };
+
+  authenticate = () => {
+    this.setState({ isAuthenticated: true });
+    setTimeout(null, 100); // fake async
+  }
+
+  signout = () => {
+    this.setState({ isAuthenticated: false });
+    setTimeout(null, 100);
+  }
 
   renderRoutes = () => {
+    const { isAuthenticated } = this.state;
+
     return (
       routes.map((route, index) => (
-        <Route
-          key={index}
-          path={route.path}
-          exact={route.exact}
-          component={route.component}
-        />
+        route.isProtected
+          ? <PrivateRoute
+              isAuthenticated={isAuthenticated}
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              isProtected={route.isProtected}
+              component={route.component}
+            />
+          : <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              isProtected={route.isProtected}
+              component={route.component}
+            />
       ))
     );
   }
@@ -33,3 +56,5 @@ export default class MainContent extends Component {
     );
   }
 };
+
+export default MainContent;
