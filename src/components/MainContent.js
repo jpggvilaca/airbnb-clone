@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { Route } from "react-router-dom";
-import { routes } from '../routes';
-import PrivateRoute from './PrivateRoute';
+import { Route, withRouter } from "react-router-dom";
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import { routes } from '../routes';
+
+import PrivateRoute from './PrivateRoute';
 
 const StyleMainContent = styled.main`
   margin: 0 auto;
@@ -10,21 +14,13 @@ const StyleMainContent = styled.main`
   padding-top: 60px;
 `;
 
+const mapStateToProps = state => ({
+  isAuthenticated: state.loginReducer.isAuthenticated
+});
+
 class MainContent extends Component {
-  state = { isAuthenticated: false };
-
-  authenticate = () => {
-    this.setState({ isAuthenticated: true });
-    setTimeout(null, 100); // fake async
-  }
-
-  signout = () => {
-    this.setState({ isAuthenticated: false });
-    setTimeout(null, 100);
-  }
-
   renderRoutes = () => {
-    const { isAuthenticated } = this.state;
+    const { isAuthenticated } = this.props;
 
     return (
       routes.map((route, index) => (
@@ -57,4 +53,7 @@ class MainContent extends Component {
   }
 };
 
-export default MainContent;
+export default compose(
+  withRouter,
+  connect(mapStateToProps, null)
+)(MainContent);
