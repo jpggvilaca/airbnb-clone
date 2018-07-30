@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+
 import HomeBanner from '../components/HomeBanner';
 
 const Home = () => (
-  <HomeBanner />
+  <Fragment>
+    <HomeBanner />
+  </Fragment>
 );
 
 export default Home;

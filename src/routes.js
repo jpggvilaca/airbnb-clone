@@ -18,6 +18,11 @@ const AsyncLoginForm = Loadable({
   loading: Loading,
 });
 
+const AsyncHouses = Loadable({
+  loader: () => import('./components/Houses'),
+  loading: Loading,
+});
+
 export const routes = [
   {
     path: "/",
@@ -33,6 +38,15 @@ export const routes = [
     isProtected: true,
     component: () => <AsyncProfile />
   },
+  {
+    path: "/houses",
+    exact: true,
+    name: 'Houses',
+    isProtected: false,
+    component: () => <AsyncHouses />
+  },
+
+  // LOGIN ROUTE
   {
     path: "/login",
     exact: true,

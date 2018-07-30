@@ -1,21 +1,23 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
 
-const Avatar = styled.div`
-  background-image: url('https://placeimg.com/80/60/any');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 60px;
-  width: 80px;
+import ProfileForm from '../components/ProfileForm';
+import Avatar from '../components/Avatar';
+
+import { users } from '../data'; // mock data, temporary
+
+const StyledProfile = styled.div`
+  padding-left: 30px;
+  height: calc(100vh - 70px - 60px); /* 60px from main, and 70px from menu */
 `;
 
 export default class Profile extends Component {
   render() {
     return (
-      <div>
-        <Avatar />
-      </div>
+      <StyledProfile>
+        <Avatar avatar={users[0].avatar} />
+        <ProfileForm />
+      </StyledProfile>
     );
   }
 }

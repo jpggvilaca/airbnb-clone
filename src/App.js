@@ -12,7 +12,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import Menu from './components/Menu';
 import MainContent from './components/MainContent';
 
-// Styles
+// General Styles
 import './index.css';
 
 const history = createHistory();

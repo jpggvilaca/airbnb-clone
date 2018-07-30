@@ -1,19 +1,19 @@
 import React from 'react';
 import { Route, Redirect } from "react-router-dom";
 
+/*
+
+  HoC to wrap any route that's login protected.
+
+*/
+
 const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      isAuthenticated ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: "/login",
-            state: { from: props.location }
-          }}
-        />
+      isAuthenticated
+        ? (<Component {...props} />)
+        : (<Redirect to={{ pathname: "/login", state: { from: props.location } }} />
       )
     }
   />
